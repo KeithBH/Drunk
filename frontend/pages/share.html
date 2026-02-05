@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>好友分享页</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <header><h1>好友分享页</h1></header>
+    <main>
+      <div class="card">
+        <label>结果 ID: <input id="resultId" value="res_001" /></label>
+        <label>分享对象: <input id="target" value="friend@example.com" /></label>
+        <button id="shareBtn">发送分享</button>
+        <p id="msg"></p>
+      </div>
+    </main>
+    <script>
+      const apiBase = 'http://localhost:4000';
+      document.getElementById('shareBtn').addEventListener('click', async () => {
+        const resultId = document.getElementById('resultId').value;
+        const target = document.getElementById('target').value;
+        const res = await fetch(`${apiBase}/api/share`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ resultId, target })
+        });
+        const data = await res.json();
+        document.getElementById('msg').textContent = `已分享: ${data.shareId}`;
+      });
+    </script>
+  </body>
+</html>
