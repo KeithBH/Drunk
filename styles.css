@@ -1,0 +1,193 @@
+:root {
+  color-scheme: light;
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --border: #e5e7eb;
+  --shadow: 0 8px 24px rgba(31, 41, 55, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  width: min(1120px, 100% - 2rem);
+  margin: 1.5rem auto 2.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+}
+
+.page-header p {
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.filters {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  border: 1px solid #c7d2fe;
+  background: #eef2ff;
+  color: #312e81;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  touch-action: manipulation;
+}
+
+.chip.active,
+.chip:active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.custom-range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  align-items: end;
+}
+
+.custom-range label {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.custom-range input {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.4rem 0.55rem;
+}
+
+.dashboard-grid {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.metric {
+  grid-column: span 6;
+}
+
+.value {
+  margin: 0.45rem 0 0.15rem;
+  font-size: clamp(1.8rem, 4.2vw, 2.3rem);
+  font-weight: 700;
+}
+
+.chart,
+.top-list {
+  grid-column: span 6;
+}
+
+.trend-card {
+  grid-column: span 12;
+}
+
+#trendChart {
+  width: 100%;
+  height: 190px;
+  display: block;
+}
+
+.category-wrap {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pie {
+  width: 160px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #dbeafe;
+}
+
+.legend,
+#topRank {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.legend li,
+#topRank li {
+  margin: 0.35rem 0;
+}
+
+.empty-state {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin-top: 0;
+}
+
+.cta {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  background: var(--primary);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 1rem, 100%);
+    margin-top: 1rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric,
+  .chart,
+  .trend-card,
+  .top-list {
+    grid-column: span 1;
+  }
+
+  .card {
+    border-radius: 14px;
+  }
+
+  .pie {
+    width: 130px;
+  }
+}
