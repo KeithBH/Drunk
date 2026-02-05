@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drunk Mobile Web</title>
+    <style>
+      body { font-family: sans-serif; padding: 1rem; }
+      .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; }
+    </style>
+  </head>
+  <body>
+    <h1>移动端拍照上传</h1>
+    <div class="card">
+      <p>优先调用手机后置相机拍照上传：</p>
+      <input id="camera" type="file" accept="image/*" capture="environment" />
+      <p id="tips">请选择拍照或图片文件。</p>
+    </div>
+    <script>
+      document.getElementById('camera').addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        document.getElementById('tips').textContent = `已选择: ${file.name} (${Math.round(file.size / 1024)} KB)`;
+      });
+    </script>
+  </body>
+</html>
