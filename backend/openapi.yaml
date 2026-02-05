@@ -1,0 +1,48 @@
+openapi: 3.0.3
+info:
+  title: Drunk Backend API
+  version: 1.0.0
+servers:
+  - url: http://localhost:4000
+paths:
+  /api/uploads:
+    post:
+      summary: 上传图片元数据
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [fileName]
+              properties:
+                fileName: { type: string }
+                mimeType: { type: string }
+                size: { type: integer }
+      responses:
+        '201':
+          description: 上传成功
+  /api/recognize:
+    post:
+      summary: 识别上传内容
+      responses:
+        '200':
+          description: 识别结果
+  /api/stats:
+    get:
+      summary: 获取统计数据
+      responses:
+        '200':
+          description: 成功
+  /api/profile/preferences:
+    get:
+      summary: 获取用户偏好
+      responses:
+        '200':
+          description: 成功
+  /api/share:
+    post:
+      summary: 分享识别结果
+      responses:
+        '201':
+          description: 分享成功
