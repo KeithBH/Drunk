@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>上传页</title>
+    <link rel="stylesheet" href="../assets/styles.css" />
+  </head>
+  <body>
+    <header><h1>上传页</h1></header>
+    <main>
+      <div class="card">
+        <h2>上传酒饮图片</h2>
+        <input id="file" type="file" accept="image/*" />
+        <button id="uploadBtn">上传</button>
+        <p id="msg"></p>
+      </div>
+    </main>
+    <script>
+      const apiBase = 'http://localhost:4000';
+      document.getElementById('uploadBtn').addEventListener('click', async () => {
+        const file = document.getElementById('file').files[0];
+        if (!file) return;
+        const res = await fetch(`${apiBase}/api/uploads`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fileName: file.name, mimeType: file.type, size: file.size })
+        });
+        const data = await res.json();
+        document.getElementById('msg').textContent = `上传完成: ${data.uploadId}`;
+        localStorage.setItem('uploadId', data.uploadId);
+      });
+    </script>
+  </body>
+</html>
